@@ -9,6 +9,7 @@ import ru.inno.market.model.Item;
 import ru.inno.market.model.Order;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class OrderTest {
 
@@ -33,6 +34,15 @@ public class OrderTest {
     public void shouldAddItem() {
         Item addItem = newOrder.addItem(newItem);
         assertEquals(addItem, newItem);
+    }
+
+    @Test
+    public void shouldAddPromoCode() {
+        double totalPrice = newOrder.getTotalPrice();
+        double PromoCodeFirstOrder = 0.2;
+        newOrder.applyDiscount(PromoCodeFirstOrder);
+        assertEquals(totalPrice * PromoCodeFirstOrder, newOrder.getTotalPrice(), 0);
+        assertTrue(newOrder.isDiscountApplied());
     }
 
     @After
