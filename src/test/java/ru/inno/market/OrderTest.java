@@ -29,9 +29,16 @@ public class OrderTest {
         assertEquals(newClient, enter);
     }
 
+    @Test
+    public void shouldAddItem() {
+        Item addItem = newOrder.addItem(newItem);
+        assertEquals(addItem, newItem);
+    }
+
     @After
     public void remove() {
         newOrder = null;
         newClient = null;
+        newItem = null;
     }
 }
